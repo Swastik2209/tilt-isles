@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #10222e;
+  --color-ink-soft: #1b3a4b;
+  --color-deep: #0a1820;
+  --color-cream: #fff6e6;
+  --color-paper: #fffaf0;
+  --color-coral: #ff6b57;
+  --color-coral-deep: #e04e3c;
+  --color-sun: #ffc94d;
+  --color-teal: #1fbfae;
+  --color-violet: #8e7dff;
+  --color-leaf: #6fcf5a;
+  --color-mist: #cfe9f2;
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  --animate-drift: drift 9s ease-in-out infinite;
+  --animate-rock: rock 3.2s ease-in-out infinite;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    60% { transform: scale(1.12); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -14px, 0); }
+  }
+  @keyframes rock {
+    0%, 100% { transform: perspective(600px) rotateX(18deg) rotateY(-22deg); }
+    50% { transform: perspective(600px) rotateX(-6deg) rotateY(22deg); }
+  }
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-deep);
+  color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+/* Golden-hour sky used behind the landing page and lobby cards. */
+.sky-backdrop {
+  background:
+    radial-gradient(60% 45% at 18% 12%, rgba(255, 220, 160, 0.55), transparent 70%),
+    radial-gradient(50% 40% at 85% 85%, rgba(255, 140, 150, 0.35), transparent 70%),
+    linear-gradient(180deg, #2f7fd0 0%, #8fd0ee 46%, #ffd9b0 82%, #f6c8b4 100%);
+}
+
+/* Deep-teal night used on the phone, where a dark screen saves battery. */
+.pad-backdrop {
+  background:
+    radial-gradient(80% 50% at 50% 0%, rgba(31, 191, 174, 0.22), transparent 70%),
+    radial-gradient(70% 45% at 50% 105%, rgba(255, 107, 87, 0.26), transparent 70%),
+    linear-gradient(180deg, #0d2a36 0%, #0a1820 100%);
+}
+
+.glass {
+  background: rgba(255, 246, 230, 0.86);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow: 0 10px 30px -12px rgba(16, 34, 46, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
